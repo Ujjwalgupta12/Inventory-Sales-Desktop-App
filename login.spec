@@ -3,9 +3,12 @@ from PyInstaller.utils.hooks import collect_data_files
 
 a = Analysis(
     ['login.py'],
-    datas=[('models/create_tables.sql', 'models')],
     pathex=[],
     binaries=[],
+    datas = [
+    ('models/create_tables.sql', 'models'),  # This will be placed in models/ inside the exe folder
+    ('data.db', '.'),                        # This will be placed at the root of the exe folder
+]
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
