@@ -10,13 +10,13 @@ def resource_path(relative_path):
         # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except AttributeError:
-        base_path = os.path.abspath(".")
+        base_path = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(base_path, relative_path)
 
 
 def initialize_database():
-    db_path = "data.db"
     sql_file_path = resource_path("models/create_tables.sql")
+    db_path = resource_path("data.db")
 
     if not os.path.exists(sql_file_path):
         raise FileNotFoundError(f"SQL schema file not found at {sql_file_path}")
